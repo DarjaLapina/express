@@ -9,11 +9,14 @@ const hbs = exphbs.create({
     extname: 'hbs'
 })
 
+hbs.handlebars.registerPartial('footer', '{{{footer}}}')
+hbs.handlebars.registerPartial('head', '{{{head}}}')
+
 app.engine('hbs', hbs.engine)
 app.set('view engine', 'hbs')
-app.set('views', path.join(__dirname, 'views'))  // Добавил path.join для корректного пути
+app.set('views', path.join(__dirname, 'views'))
 
-app.use(express.static(path.join(__dirname, 'public')))  // Добавил path.join для корректного пути
+app.use(express.static(path.join(__dirname, 'public')))
 
 app.get('/', (req, res) => {
     res.render('index', {
@@ -28,7 +31,7 @@ app.get('/about', (req, res) => {
 
 app.get('/add', (req, res) => {
     res.render('add', {
-        title: 'Добавить курс',  // Добавил заголовок
+        title: 'Добавить курс',
         isAdd: true
     })
 })
